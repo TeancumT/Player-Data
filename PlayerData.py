@@ -1,5 +1,6 @@
 import string
 import random as ra
+import json
 
 
 def id_generator(
@@ -8,13 +9,12 @@ def id_generator(
     return "".join(ra.choice(chars) for _ in range(size))
 
 
-def addUser(
+def add_user(
     username,
     data,
     health=100,
     level=0,
     items=eval("{" + "}"),
-    friends=[],
 ):
     truthy = True
     if not ("players" in data):
@@ -32,5 +32,13 @@ def addUser(
             "health": health,
             "level": level,
             "items": items,
-            "friends": friends,
         }
+
+
+if __name__ == "__main__":
+    data = {}
+    add_user("Tim", data)
+    add_user("Joe", data)
+    add_user("James", data)
+    add_user("GreenDog", data)
+    print(json.dumps(data, indent=4, sort_keys=True))
